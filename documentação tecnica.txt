@@ -1,0 +1,77 @@
+Criando aplicação com nodejs:
+npm init -y - Cria o arquivo package.json -> Guarda as dependências do projeto
+npm install express -> primeira dependencia criada. Express é um microframework que trata rodas e views
+executa com node server.js
+npm install -D nodemon // Dependencia de desenvolvimento -D, nodemon faz que não precise reiniciar o server cada vez que altera ele, por isso a dependência de desenvolvimento
+npm run dev // Criado em package.json uma dependencia que só roda em dev, e criada a tag "dev" em "scripts"
+
+Instalando o Mongo
+Instalado o docker tools em 192.168.99.100
+docker pull mongo (Baixa a ultima versão do mongodb)
+docker run --name mongodb -p 27017:27017 -d mongo
+--name = nome da maquina
+-p = redirecionamento de porta, toda a vez que acessar a porta 27017 da minha maquina acessa a porta 27017 mongodb
+-d = qual imagem se deseja utilizar (No caso baixamos a imagem do mongo)
+
+docker ps -a (retorna todas as imagens do docker, inclusive as que estão paradas)
+para iniciar uma imagem bastar dar comando docker start nomeimagem
+
+Para testar o mongo, basta ir em https://robomongo.org/ e fazer download do robo3t
+
+npm install mongoose //instalando dependencia para conectar o mongo ()
+faz o mapeamento objeto-relacional
+
+npm install require-dir = faz o papel do require em um diretorio em todos os arquivos automaticamente
+
+----------------
+O Controller tem as funcionalidades que são aplicadas ao model. Basicamente, exclusao, inserção, atualização, listagem, etc... O Model é a camada que chega mais perto do mapeamento do banco
+
+----
+npm install mongoose-paginate - Modulo para paginar registros do mongo
+----
+npm install cors
+
+
+
+------------------------------
+ReactJS - APlicações SIstemas
+
+https://yarnpkg.com/ - Ferramenta parecida com npm para gestão de pacotes mais veloz.
+
+Criando uma aplicação reactenative. Também resolve os problemas por navegadores que não suportam nvoas configurações de scripts
+npm install -g create-react-app
+
+create-react-app huntweb //Da um nome para o projeto criado chamado huntweb
+
+Startar aplicação: npm start
+
+//Biblioteca para acessar uma api do react native para o backend
+yarn add axios
+
+//Adiciona biblioteca para trabalhar com rotas
+yarn add react-router-dom
+------------------------------------------------------------------
+Criando uma rede entre dois conteiners no docker.
+Fonte: https://medium.com/@renato.groffe/postgresql-docker-executando-uma-inst%C3%A2ncia-e-o-pgadmin-4-a-partir-de-containers-ad783e85b1a4
+
+
+docker network create --driver bridge postgres-network
+
+docker run --name rede-postgres --network=postgres-network -e "POSTGRES_PASSWORD=Postgres2018!" -p 5432:5432 -v E:\Users\daniel\apps\sao-jose\db:/var/lib/postgresql/data -d postgres
+- O atributo name especifica o nome do container a ser gerado (teste-postgres);
+- Para o atributo network foi definido o valor da rede criada na seção anterior (postgres-network);
+- No atributo POSTGRES_PASSWORD foi indicada a senha do administrador (para o usuário default postgres);
+- O atributo -p indica a porta (5432) em que se dará a comunicação com o PostgreSQL, a qual será mapeada para a porta default (5432) deste SGBD dentro do container;
+- Através do atributo -v foi criado um volume, especificando assim o diretório no Ubuntu Desktop em que serão gravados os arquivos de dados (E:\Users\daniel\apps\sao-jose\db);
+- Quanto ao atributo -d, este parâmetro determina que o container em questão será executado como um serviço em background;
+- Temos indicada ainda a imagem utilizada como base para a geração do container (postgres).
+
+docker run --name pgadmindb --network=postgres-network -p 15432:80 -e "PGADMIN_DEFAULT_EMAIL=phpsistemas@gmail.com" -e "PGADMIN_DEFAULT_PASSWORD=PgAdmin2018!" -d dpage/pgadmin4
+- O atributo name indica o nome do container a ser criado (teste-pgadmin);
+- No atributo network foi atribuído o nome da rede utilizada na comunicação entre a instância do PostgreSQL e o pgAdmin (postgres-network);
+- O atributo -p especifica a porta (15432) em que acontecerá a comunicação com o pgAdmin 4, a qual será mapeada para a porta default (80) desta aplicação Web;
+- No atributo PGADMIN_DEFAULT_EMAIL foi informado o e-mail de acesso ao pgAdmin;
+- No atributo PGADMIN_DEFAULT_PASSWORD foi indicada ainda a senha de acesso ao pgAdmin 4;
+- Temos especificada também a imagem empregada na geração do container (dpage/pgadmin4).
+
+mwbitt@gmail.com
