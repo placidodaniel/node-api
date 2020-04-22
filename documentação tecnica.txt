@@ -74,4 +74,17 @@ docker run --name pgadmindb --network=postgres-network -p 15432:80 -e "PGADMIN_D
 - No atributo PGADMIN_DEFAULT_PASSWORD foi indicada ainda a senha de acesso ao pgAdmin 4;
 - Temos especificada também a imagem empregada na geração do container (dpage/pgadmin4).
 
-mwbitt@gmail.com
+postgresql://[user[:password]@][netloc][:port][/dbname][?param1=value1&...]
+
+Here are examples from same document
+
+postgresql://
+postgresql://localhost
+postgresql://localhost:5432
+postgresql://localhost/mydb
+postgresql://user@localhost
+postgresql://user:secret@localhost
+postgresql://other@localhost/otherdb?connect_timeout=10&application_name=myapp
+postgresql://localhost/mydb?user=other&password=secret
+
+
